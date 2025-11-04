@@ -1,21 +1,23 @@
 # ================================================================
-# FILE: run_pipeline_verbose.py
+# FILE: run_pipeline_verbose.py (FINAL OPTIMIZED VERSION)
 # ================================================================
-# This version explains *every single step* of the dynamic GAT pipeline.
-# Nothing is hidden — all math, loops, logic, and outputs are printed clearly.
+# This version provides a fully explained and optimized implementation
+# of the dynamic GAT pipeline for stock correlation and graph creation.
 #
 # GOAL:
 #   For a given target stock (e.g. "RVNL.NS"), we:
 #       1. Load all pre-denoised stock price data
 #       2. Compute pairwise correlations manually
 #       3. Select the most correlated peers
-#       4. Combine those series into a single dataset
-#       5. Build an adjacency matrix from correlation threshold
+#       4. Combine those series into one master dataset
+#       5. Build adjacency matrix for GAT input
 #
-# ----------------------------------------------------------------
-# NOTE: Make sure 'data/denoised_universe/' folder exists and contains
-#       pre-denoised CSVs for multiple stocks.
-# ----------------------------------------------------------------
+# OUTPUT FILES:
+#   - data/model_ready/combined_denoised_prices.csv
+#   - data/model_ready/correlation_matrix.csv
+#   - data/model_ready/adjacency_matrix.npy
+#
+# ================================================================
 
 import os
 import argparse
@@ -50,20 +52,21 @@ def manual_correlation(x, y):
         r_xy = Σ[(xi - mean_x) * (yi - mean_y)] / sqrt(Σ(xi - mean_x)^2 * Σ(yi - mean_y)^2)
     """
     n = len(x)
+    if n == 0:
+        return 0.0
+
     mean_x = sum(x) / n
     mean_y = sum(y) / n
 
     numerator = sum((x[i] - mean_x) * (y[i] - mean_y) for i in range(n))
-    denom_x = sum((x[i] - mean_x)**2 for i in range(n))
-    denom_y = sum((y[i] - mean_y)**2 for i in range(n))
+    denom_x = sum((x[i] - mean_x) ** 2 for i in range(n))
+    denom_y = sum((y[i] - mean_y) ** 2 for i in range(n))
     denominator = (denom_x * denom_y) ** 0.5
 
-    if denominator == 0:
-        return 0.0
-    return numerator / denominator
+    return 0.0 if denominator == 0 else numerator / denominator
 
 # ================================================================
-# MAIN FUNCTION
+# MAIN PIPELINE FUNCTION
 # ================================================================
 def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
 
@@ -102,8 +105,8 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
         df.rename(columns={'Close': ticker_name}, inplace=True)
         df_list.append(df[[ticker_name]])
 
-    # Combine all into one master dataframe
-    universe_df = pd.concat(df_list, axis=1).dropna(how='any')
+    # Combine all into one master dataframe and interpolate any missing values
+    universe_df = pd.concat(df_list, axis=1).interpolate(method='linear').dropna(how='any')
     print(f"\nLoaded {len(universe_df.columns)} stocks successfully.")
     print("Data sample (first 3 rows):")
     print(universe_df.head(3).round(4).to_string())
@@ -111,7 +114,11 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
     # ----------------------------------------------------------------
     # STEP 2: FIND CLOSEST PEERS BASED ON CORRELATION
     # ----------------------------------------------------------------
-    print_heading(f"TASK 2: FINDING {num_peers} CLOSEST PEERS FOR '{target_ticker}'")
+    print_heading(f"TASK 2: FINDING {num_peers} CLOSEST PEERS FOR TARGET '{target_ticker}'")
+
+    # Add suffix if missing
+    if not target_ticker.upper().endswith(".NS"):
+        target_ticker += ".NS"
 
     safe_target = target_ticker.upper()
     if safe_target not in universe_df.columns:
@@ -126,11 +133,12 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
     for col in universe_df.columns:
         if col == safe_target:
             continue
+        if len(universe_df[col]) < 30:
+            continue
         val = manual_correlation(target_series, universe_df[col].values.tolist())
         correlations[col] = val
         print(f"Correlation({safe_target}, {col}) = {val:.4f}")
 
-    # Sort correlations descending
     sorted_peers = sorted(correlations.items(), key=lambda x: x[1], reverse=True)
     top_peers = [k for k, v in sorted_peers[:num_peers]]
 
@@ -156,7 +164,7 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
     print(final_df.head(5).round(4).to_string())
 
     # ----------------------------------------------------------------
-    # STEP 4: MANUAL CORRELATION MATRIX
+    # STEP 4: BUILD MANUAL CORRELATION MATRIX
     # ----------------------------------------------------------------
     print_heading("TASK 4: BUILDING MANUAL CORRELATION & ADJACENCY MATRIX")
 
@@ -171,19 +179,22 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
             yj = final_df[cols[j]].values.tolist()
             corr_matrix[i, j] = manual_correlation(xi, yj)
             if i == j:
-                corr_matrix[i, j] = 1.0  # self-correlation
+                corr_matrix[i, j] = 1.0
 
     corr_df = pd.DataFrame(corr_matrix, index=cols, columns=cols)
+    corr_path = os.path.join(DIR_MODEL_READY, "correlation_matrix.csv")
+    corr_df.to_csv(corr_path)
+    print(f"Correlation matrix saved to: {corr_path}")
     print("Partial correlation matrix (first 4x4):")
     print(corr_df.iloc[:4, :4].round(3).to_string())
 
     # ----------------------------------------------------------------
-    # STEP 5: ADJACENCY MATRIX FROM THRESHOLD
+    # STEP 5: BUILD ADJACENCY MATRIX FROM THRESHOLD
     # ----------------------------------------------------------------
     print_heading(f"TASK 5: BUILDING ADJACENCY MATRIX (Threshold = {correlation_threshold})")
 
     adjacency = np.where(corr_matrix >= correlation_threshold, 1, 0)
-    np.fill_diagonal(adjacency, 0)  # no self-loop
+    np.fill_diagonal(adjacency, 0)  # remove self-loops
 
     adj_df = pd.DataFrame(adjacency, index=cols, columns=cols)
     print("Adjacency Matrix (1=connected, 0=not connected):")
@@ -199,7 +210,7 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
     # ----------------------------------------------------------------
     # DONE
     # ----------------------------------------------------------------
-    print_heading(f"PIPELINE COMPLETED SUCCESSFULLY FOR '{target_ticker}'")
+    print_heading(f"PIPELINE COMPLETED SUCCESSFULLY FOR '{safe_target}'")
     print(f"All files saved in: {DIR_MODEL_READY}")
     print("→ You can now run 'train_model.py' for this group.")
 
@@ -207,7 +218,7 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
 # COMMAND LINE ENTRY
 # ================================================================
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Fully explained dynamic pipeline for GAT stock grouping.")
+    parser = argparse.ArgumentParser(description="Fully explained and optimized dynamic pipeline for GAT stock grouping.")
     parser.add_argument("target_ticker", type=str, help="Target stock ticker, e.g. RVNL.NS")
     args = parser.parse_args()
 

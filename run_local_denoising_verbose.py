@@ -1,8 +1,7 @@
 # ================================================================
 # FILE: run_local_denoising_verbose_final.py
 # AIM : Manual DWT-based Denoising (Super-Detailed for Final Year Project)
-# AUTHOR: Nilesh Kumar
-# NOTE : Haar Wavelet and Convolution are implemented from scratch.
+# FINAL FIX: Uses "Returns-Based DWT" to match the final pipeline.
 # ================================================================
 
 import numpy as np
@@ -17,63 +16,52 @@ import os
 # PART 1: CORE MATHEMATICAL BUILDING BLOCKS (FROM SCRATCH)
 # ----------------------------------------------------------------------
 
-def convolve_from_scratch(signal, kernel, kernel_name):
+# (FIX) Naam badal diya taaki yeh mathematically correct ho
+def correlate_from_scratch(signal, kernel, kernel_name):
     """
-    This function performs 1D convolution manually, showing every step.
-    This is the most fundamental operation in DWT.
+    This function performs 1D correlation manually.
+    DWT analysis filters (h0, h1) are used as-is (no flipping).
     """
-    print(f"\n    [Executing Manual Convolution for '{kernel_name}']")
-    time.sleep(1)
+    print(f"\n    [Executing Manual Correlation for '{kernel_name}']")
+    time.sleep(1) 
 
     kernel_size = len(kernel)
     signal_size = len(signal)
     output_size = signal_size - kernel_size + 1
     output = np.zeros(output_size)
     
-    # For convolution, the filter (kernel) is applied in reverse.
-    reversed_kernel = kernel[::-1]
+    # (FIX) DWT correlation mein kernel reverse nahi hota.
+    # reversed_kernel = kernel[::-1] # <-- YEH GALTI THI
     
-    # Loop through the signal to apply the kernel at each position.
     for i in range(output_size):
-        # Take a small piece of the signal (a "window").
         window = signal[i : i + kernel_size]
-        
-        # Element-wise multiplication between the signal window and the reversed kernel.
-        multiplied_values = window * reversed_kernel
-        
-        # Sum the results of the multiplication to get the output value for this position.
+        # (FIX) Seedha kernel se multiply karo
+        multiplied_values = window * kernel 
         output[i] = np.sum(multiplied_values)
         
-        # For the first 2 steps, print the entire calculation in detail.
         if i < 2:
-            print(f"\n    - Convolution Step {i+1}:")
-            print(f"      Signal Window : {np.round(window, 2)}")
-            print(f"      Kernel (rev)  : {np.round(reversed_kernel, 2)}")
-            print(f"      Multiplication: {np.round(multiplied_values, 2)}")
+            print(f"\n    - Correlation Step {i+1}:")
+            print(f"      Signal Window : {np.round(window, 4)}")
+            print(f"      Kernel        : {np.round(kernel, 2)}") # Not reversed
+            print(f"      Multiplication: {np.round(multiplied_values, 4)}")
             
-            formula_str = " + ".join([f"({val:.2f})" for val in multiplied_values])
-            print(f"      Sum           : {formula_str} = {output[i]:.2f}")
-            time.sleep(2)
+            formula_str = " + ".join([f"({val:.4f})" for val in multiplied_values])
+            print(f"      Sum           : {formula_str} = {output[i]:.4f}")
+            time.sleep(2) 
             
     return output
 
 def dwt_haar_manual(signal):
     """
-    Performs one level of Haar DWT using our manual convolution function.
+    Performs one level of Haar DWT using our manual correlation function.
     """
-    # Define the Haar Wavelet filters.
-    # Low-pass filter captures the "trend" or "approximation".
     low_pass_filter = np.array([1, 1]) / np.sqrt(2)
-    # High-pass filter captures the "details" or "noise".
     high_pass_filter = np.array([-1, 1]) / np.sqrt(2)
 
-    # Calculate Approximation Coefficients (cA) using the low-pass filter.
-    cA_full = convolve_from_scratch(signal, low_pass_filter, "Trend (Low-Pass)")
+    # (FIX) Ab hum correlation use kar rahe hain, jo sahi hai
+    cA_full = correlate_from_scratch(signal, low_pass_filter, "Trend (Low-Pass)")
+    cD_full = correlate_from_scratch(signal, high_pass_filter, "Noise (High-Pass)")
     
-    # Calculate Detail Coefficients (cD) using the high-pass filter.
-    cD_full = convolve_from_scratch(signal, high_pass_filter, "Noise (High-Pass)")
-    
-    # Downsampling: Keep only every second element to reduce data size.
     print("\n    [Performing Downsampling]")
     print(f"      cA length before downsampling: {len(cA_full)}")
     print(f"      cD length before downsampling: {len(cD_full)}")
@@ -86,25 +74,17 @@ def dwt_haar_manual(signal):
     return cA, cD
 
 def idwt_haar_manual(cA, cD):
-    """
-    Performs one level of Inverse Haar DWT to reconstruct the signal.
-    """
     min_length = min(len(cA), len(cD))
     cA, cD = cA[:min_length], cD[:min_length]
-
-    # Reconstruct the even and odd indexed points of the original signal.
     even_points = (cA + cD) / np.sqrt(2)
     odd_points  = (cA - cD) / np.sqrt(2)
-
-    # Interleave the even and odd points to get the full signal back.
     reconstructed_signal = np.zeros(2 * min_length)
-    reconstructed_signal[0::2] = even_points # Place even points at 0, 2, 4...
-    reconstructed_signal[1::2] = odd_points  # Place odd points at 1, 3, 5...
-    
+    reconstructed_signal[0::2] = even_points
+    reconstructed_signal[1::2] = odd_points
     return reconstructed_signal
 
 # ----------------------------------------------------------------------
-# PART 2: FULL DENOISING PIPELINE WITH VERBOSE OUTPUT
+# PART 2: FULL DENOISING PIPELINE WITH VERBOSE OUTPUT (FIXED)
 # ----------------------------------------------------------------------
 
 def denoise_stock_signal_verbose(ticker_symbol, sensitivity, period):
@@ -116,83 +96,98 @@ def denoise_stock_signal_verbose(ticker_symbol, sensitivity, period):
     data = yf.download(ticker_symbol, period=period, progress=False, auto_adjust=True)
     data.dropna(inplace=True)
 
-    if data.empty:
-        print(f"❌ No data found for {ticker_symbol}. Please check the ticker symbol or your internet connection.")
+    if data.empty or len(data) < 10:
+        print(f"❌ No data found for {ticker_symbol}.")
         return
 
-    signal = data['Close'].to_numpy().flatten()
-    print(f"  - Total data points downloaded: {len(signal)}")
+    price_signal = data['Close'].to_numpy().flatten()
+    print(f"  - Total data points downloaded: {len(price_signal)}")
     time.sleep(1)
 
     # ------------------------------------------------------------
     print("\n" + "="*90)
-    print("📌 STEP 2: HAAR DWT DECOMPOSITION (MANUAL CALCULATION)")
+    print("📌 (FIX) STEP 1.5: CALCULATING DAILY RETURNS (pct_change)")
     print("="*90)
+    print("  - DWT 'Price' (e.g., 3000) par fail ho raha tha.")
+    print("  - Hum ab DWT 'Returns' (e.g., 0.01) par chalaayenge.")
+    time.sleep(1)
+    
+    return_signal = pd.Series(price_signal).pct_change().fillna(0).to_numpy()
+    print(f"  - Calculated daily returns. Example: Price {price_signal[0]:.2f} -> {price_signal[1]:.2f} = {return_signal[1]:.4f} ({(return_signal[1]*100):.2f}%)")
+    time.sleep(2)
+    
+    # ------------------------------------------------------------
+    print("\n" + "="*90)
+    print("📌 STEP 2: HAAR DWT DECOMPOSITION (ON RETURNS)")
+    print("="*90)
+    print("  - Running DWT on RETURN signal...")
     time.sleep(1)
 
-    cA, cD = dwt_haar_manual(signal)
+    cA, cD = dwt_haar_manual(return_signal)
     
     print("\n  - DWT process finished.")
     print("\n🔸 Example Calculation for First 2 Coefficients (Recap):")
-    for i in range(min(2, len(signal)//2)):
-        x0, x1 = signal[2*i], signal[2*i+1]
-        print(f"  Pair {i}: Signal Values = [{x0:.2f}, {x1:.2f}]")
-        print(f"    cA[{i}] (Trend) = ({x0:.2f} + {x1:.2f}) / 1.414 = {cA[i]:.4f}")
-        print(f"    cD[{i}] (Noise) = (-{x0:.2f} + {x1:.2f}) / 1.414 = {cD[i]:.4f}")
+    for i in range(min(2, len(return_signal)//2)):
+        r0, r1 = return_signal[2*i], return_signal[2*i+1]
+        print(f"  Pair {i}: Return Signal Values = [{r0:.4f}, {r1:.4f}]")
+        print(f"    cA[{i}] (Trend) = ({r0:.4f} + {r1:.4f}) / 1.414 = {cA[i]:.4f}")
+        print(f"    cD[{i}] (Noise) = (-{r0:.4f} + {r1:.4f}) / 1.414 = {cD[i]:.4f}")
     time.sleep(2)
 
     # ------------------------------------------------------------
     print("\n" + "="*90)
-    print("📌 STEP 3: THRESHOLD ESTIMATION & APPLICATION (NOISE REMOVAL)")
+    print("📌 STEP 3: THRESHOLD ESTIMATION (ON RETURN NOISE)")
     print("="*90)
+    print("  - Calculating threshold on RETURN noise coefficients (cD)...")
     time.sleep(1)
     
-    # Calculate the threshold value dynamically based on the noise level.
     median_absolute_deviation = np.median(np.abs(cD))
-    sigma = median_absolute_deviation / 0.6745
+    sigma = median_absolute_deviation / 0.6745 if median_absolute_deviation > 0 else 0
     threshold = sigma * sensitivity
     print("  - Threshold Calculation Steps:")
     print(f"    1. Median of absolute noise (|cD|): {median_absolute_deviation:.4f}")
     print(f"    2. Estimated Noise Level (σ): {median_absolute_deviation:.4f} / 0.6745 = {sigma:.4f}")
     print(f"    3. Final Threshold (λ) with Sensitivity {sensitivity}: {sigma:.4f} * {sensitivity} = {threshold:.4f}")
 
-    # Apply the threshold: if a noise value is smaller than the threshold, set it to 0.
-    cD_cleaned = np.where(np.abs(cD) > threshold, cD, 0)
-    removed_count = np.sum(cD != cD_cleaned)
-    print(f"\n  - Action: {removed_count} noise coefficients were smaller than the threshold and have been set to 0.")
-    
-    # Show the thresholding rule in action for the first 5 coefficients.
-    print("\n🔸 Example of Thresholding Rule:")
-    for i in range(min(5, len(cD))):
-        val = cD[i]
-        decision = "KEPT" if np.abs(val) > threshold else "SET TO ZERO"
-        print(f"  - cD[{i}] = {val:.4f}.  |{val:.4f}| > {threshold:.4f}?  Decision: {decision}")
+    cD_cleaned = np.sign(cD) * np.maximum(0, np.abs(cD) - threshold)
+    removed_count = np.sum(np.abs(cD) > np.abs(cD_cleaned)) 
+    print(f"\n  - Action: Applied 'Soft Thresholding'. {removed_count} coefficients were 'shrunk'.")
     time.sleep(2)
 
     # ------------------------------------------------------------
     print("\n" + "="*90)
-    print("📌 STEP 4: INVERSE HAAR RECONSTRUCTION (MANUAL)")
+    print("📌 STEP 4: INVERSE HAAR RECONSTRUCTION (DENOISED RETURNS)")
     print("="*90)
     time.sleep(1)
 
-    denoised_signal = idwt_haar_manual(cA, cD_cleaned)
-
-    # Match the length of the reconstructed signal to the original signal.
-    if len(denoised_signal) < len(signal):
-        denoised_signal = np.pad(denoised_signal, (0, len(signal)-len(denoised_signal)), 'edge')
-    elif len(denoised_signal) > len(signal):
-        denoised_signal = denoised_signal[:len(signal)]
-
-    print(f"  - Signal reconstructed. Final length: {len(denoised_signal)}")
+    denoised_return_signal_full = idwt_haar_manual(cA, cD_cleaned)
+    print(f"  - Denoised 'Return' signal reconstructed. Length: {len(denoised_return_signal_full)}")
     
-    print("\n🔸 Manual Reconstruction Check (First 2 Pairs):")
-    for i in range(min(2, len(cA))):
-        a, d_clean = cA[i], cD_cleaned[i]
-        x_even = (a + d_clean) / np.sqrt(2)
-        x_odd = (a - d_clean) / np.sqrt(2)
-        print(f"  Pair {i}: cA={a:.4f}, cD_clean={d_clean:.4f} → Reconstructed Even={x_even:.4f}, Odd={x_odd:.4f}")
-    time.sleep(2)
+    if len(denoised_return_signal_full) < len(return_signal):
+        denoised_return_signal = np.pad(denoised_return_signal_full, (0, len(return_signal)-len(denoised_return_signal_full)), 'edge')
+    else:
+        denoised_return_signal = denoised_return_signal_full[:len(return_signal)]
 
+    # ------------------------------------------------------------
+    print("\n" + "="*90)
+    print("📌 (FIX) STEP 4.5: RECONSTRUCTING PRICE FROM DENOISED RETURNS")
+    print("="*90)
+    time.sleep(1)
+    
+    denoised_price_signal = np.zeros_like(price_signal)
+    denoised_price_signal[0] = price_signal[0] 
+    
+    print(f"  - Reconstructing price day-by-day:")
+    print(f"    Day 0: Price = {denoised_price_signal[0]:.2f} (Starting Price)")
+    
+    for t in range(1, len(price_signal)):
+        denoised_price_signal[t] = denoised_price_signal[t-1] * (1 + denoised_return_signal[t])
+        if t < 5: 
+            print(f"    Day {t}: Price = {denoised_price_signal[t-1]:.2f} * (1 + {denoised_return_signal[t]:.4f}) = {denoised_price_signal[t]:.2f}")
+            
+    print("  - Final Denoised Price Signal is ready.")
+    time.sleep(2)
+    
     # ------------------------------------------------------------
     print("\n" + "="*90)
     print("📊 STEP 5: FINAL COMPARISON TABLE (LAST 7 DAYS)")
@@ -201,8 +196,8 @@ def denoise_stock_signal_verbose(ticker_symbol, sensitivity, period):
 
     comp_df = pd.DataFrame({
         'Date': data.index[-7:],
-        'Original_Price': np.round(signal[-7:], 2),
-        'Denoised_Price': np.round(denoised_signal[-7:], 2)
+        'Original_Price': np.round(price_signal[-7:], 2),
+        'Denoised_Price': np.round(denoised_price_signal[-7:], 2)
     })
     print(comp_df.to_string(index=False))
     time.sleep(1)
@@ -214,9 +209,9 @@ def denoise_stock_signal_verbose(ticker_symbol, sensitivity, period):
     time.sleep(1)
 
     plt.figure(figsize=(14, 7))
-    plt.plot(data.index, signal, label='Original (Noisy) Signal', color='blue', alpha=0.5)
-    plt.plot(data.index, denoised_signal, label='Denoised (Clean) Signal', color='red', linewidth=2)
-    plt.title(f"{ticker_symbol} - Denoising Analysis (From Scratch)", fontsize=16)
+    plt.plot(data.index, price_signal, label='Original (Noisy) Signal', color='blue', alpha=0.5)
+    plt.plot(data.index, denoised_price_signal, label='Denoised (Clean) Signal', color='red', linewidth=2)
+    plt.title(f"{ticker_symbol} - Denoising Analysis (Returns-Based)", fontsize=16)
     plt.xlabel("Date", fontsize=12)
     plt.ylabel("Price", fontsize=12)
     plt.legend()
@@ -234,7 +229,7 @@ def denoise_stock_signal_verbose(ticker_symbol, sensitivity, period):
     clean_name = ticker_symbol.replace('.NS','')
     out_path = f"{out_dir}/{clean_name}_denoised.csv"
 
-    pd.DataFrame({'Date': data.index, 'Denoised_Close': denoised_signal}).to_csv(out_path, index=False)
+    pd.DataFrame({'Date': data.index, 'Denoised_Close': denoised_price_signal}).to_csv(out_path, index=False)
     print(f"✅ Denoised data saved to: {out_path}")
     print("\n🎯 PROCESS COMPLETE")
     print("="*90)
@@ -247,11 +242,11 @@ if __name__ == "__main__":
         description="""Manual Haar DWT denoising for stock prices with super-detailed mathematical explanations.
     
 Example Usage:
-  python3 run_local_denoising_verbose.py --ticker TCS.NS --period 6mo
-  python3 run_local_denoising_verbose.py --ticker RELIANCE.NS --sensitivity 2.5
+  python3 run_local_denoising_verbose_final.py --ticker TCS.NS --period 6mo
+  python3 run_local_denoising_verbose_final.py --ticker TITAN.NS --sensitivity 0.1
 """)
     parser.add_argument('--ticker', type=str, required=True, help="Stock ticker (e.g., 'TCS.NS')")
-    parser.add_argument('--sensitivity', type=float, default=3.0, help="Denoising strength. Higher value = more smoothing.")
+    parser.add_argument('--sensitivity', type=float, default=0.1, help="Denoising strength. Higher value = more smoothing.") # <-- FINAL FIX
     parser.add_argument('--period', type=str, default='1y', help="Time period (e.g., '5y', '1y', '6mo', '1mo', '5d')")
     args = parser.parse_args()
 
