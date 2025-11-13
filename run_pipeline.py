@@ -32,7 +32,7 @@ DENOISED_UNIVERSE_DIR = "data/denoised_universe"
 DIR_MODEL_READY = "data/model_ready"
 
 DEFAULT_NUM_PEERS = 9
-DEFAULT_CORRELATION_THRESHOLD = 0.5
+DEFAULT_CORRELATION_THRESHOLD = 0.5  # (kept for backward compatibility)
 
 # ================================================================
 # HELPER: Print formatted section headings
@@ -189,11 +189,19 @@ def run_dynamic_pipeline(target_ticker, num_peers, correlation_threshold):
     print(corr_df.iloc[:4, :4].round(3).to_string())
 
     # ----------------------------------------------------------------
-    # STEP 5: BUILD ADJACENCY MATRIX FROM THRESHOLD
+    # ✅ STEP 5: BUILD ADJACENCY MATRIX (Top-K)
     # ----------------------------------------------------------------
-    print_heading(f"TASK 5: BUILDING ADJACENCY MATRIX (Threshold = {correlation_threshold})")
+    print_heading("TASK 5: BUILDING ADJACENCY MATRIX (Top-K connections)")
 
-    adjacency = np.where(corr_matrix >= correlation_threshold, 1, 0)
+    k = 3  # Use top 3 strongest correlations per node
+    adjacency = np.zeros_like(corr_matrix, dtype=int)
+
+    for i in range(n):
+        sorted_idx = np.argsort(-corr_matrix[i, :])  # descending order
+        top_idx = [j for j in sorted_idx if j != i][:k]
+        adjacency[i, top_idx] = 1
+
+    adjacency = np.maximum(adjacency, adjacency.T)  # make symmetric
     np.fill_diagonal(adjacency, 0)  # remove self-loops
 
     adj_df = pd.DataFrame(adjacency, index=cols, columns=cols)

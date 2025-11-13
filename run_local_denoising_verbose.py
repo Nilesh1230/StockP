@@ -1,6 +1,6 @@
 # ================================================================
-# FILE: run_local_denoising_verbose_final.py
-# AIM : Manual DWT-based Denoising (Super-Detailed for Final Year Project)
+# FILE: run_local_denoising_verbose.py
+# AIM : DWT-based Denoising ( Final Year Project)
 # FINAL FIX: Uses "Returns-Based DWT" to match the final pipeline.
 # ================================================================
 
@@ -242,8 +242,8 @@ if __name__ == "__main__":
         description="""Manual Haar DWT denoising for stock prices with super-detailed mathematical explanations.
     
 Example Usage:
-  python3 run_local_denoising_verbose_final.py --ticker TCS.NS --period 6mo
-  python3 run_local_denoising_verbose_final.py --ticker TITAN.NS --sensitivity 0.1
+  python3 run_local_denoising_verbose.py --ticker TCS.NS --period 6mo
+  python3 run_local_denoising_verbose.py --ticker TITAN.NS --sensitivity 0.1 --period 1y
 """)
     parser.add_argument('--ticker', type=str, required=True, help="Stock ticker (e.g., 'TCS.NS')")
     parser.add_argument('--sensitivity', type=float, default=0.1, help="Denoising strength. Higher value = more smoothing.") # <-- FINAL FIX
