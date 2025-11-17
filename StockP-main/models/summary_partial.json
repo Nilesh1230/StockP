@@ -1,0 +1,1010 @@
+[
+  {
+    "ticker": "ACC.NS",
+    "status": "ok",
+    "best_val": 0.0005098016990814358,
+    "best_epoch": 36,
+    "test_rmse": 0.016019307076931
+  },
+  {
+    "ticker": "ADANIENT.NS",
+    "status": "ok",
+    "best_val": 0.0008271389524452388,
+    "best_epoch": 43,
+    "test_rmse": 0.019537324085831642
+  },
+  {
+    "ticker": "ADANIGREEN.NS",
+    "status": "ok",
+    "best_val": 0.0008292051497846842,
+    "best_epoch": 71,
+    "test_rmse": 0.019351644441485405
+  },
+  {
+    "ticker": "ADANIPORTS.NS",
+    "status": "ok",
+    "best_val": 0.0005242270417511463,
+    "best_epoch": 78,
+    "test_rmse": 0.017238333821296692
+  },
+  {
+    "ticker": "ADANIPOWER.NS",
+    "status": "ok",
+    "best_val": 0.0008474648057017475,
+    "best_epoch": 70,
+    "test_rmse": 0.02103680558502674
+  },
+  {
+    "ticker": "AMBUJACEM.NS",
+    "status": "ok",
+    "best_val": 0.0005496468220371753,
+    "best_epoch": 44,
+    "test_rmse": 0.017166145145893097
+  },
+  {
+    "ticker": "APOLLOHOSP.NS",
+    "status": "ok",
+    "best_val": 0.0003251897869631648,
+    "best_epoch": 32,
+    "test_rmse": 0.01646609418094158
+  },
+  {
+    "ticker": "ASHOKLEY.NS",
+    "status": "ok",
+    "best_val": 0.0003953110863221809,
+    "best_epoch": 60,
+    "test_rmse": 0.019070440903306007
+  },
+  {
+    "ticker": "ASIANPAINT.NS",
+    "status": "ok",
+    "best_val": 0.0002115483584930189,
+    "best_epoch": 46,
+    "test_rmse": 0.013302142731845379
+  },
+  {
+    "ticker": "AUBANK.NS",
+    "status": "ok",
+    "best_val": 0.0004629363975254819,
+    "best_epoch": 46,
+    "test_rmse": 0.021724436432123184
+  },
+  {
+    "ticker": "AUROPHARMA.NS",
+    "status": "ok",
+    "best_val": 0.0003857189658447169,
+    "best_epoch": 80,
+    "test_rmse": 0.022314593195915222
+  },
+  {
+    "ticker": "AXISBANK.NS",
+    "status": "ok",
+    "best_val": 0.00028699447284452617,
+    "best_epoch": 67,
+    "test_rmse": 0.014306142926216125
+  },
+  {
+    "ticker": "BAJAJFINSV.NS",
+    "status": "ok",
+    "best_val": 0.00030618863820564,
+    "best_epoch": 77,
+    "test_rmse": 0.0160154290497303
+  },
+  {
+    "ticker": "BAJAJHLDNG.NS",
+    "status": "ok",
+    "best_val": 0.00036089222703594714,
+    "best_epoch": 54,
+    "test_rmse": 0.017260922119021416
+  },
+  {
+    "ticker": "BANDHANBNK.NS",
+    "status": "ok",
+    "best_val": 0.0004988556611351669,
+    "best_epoch": 75,
+    "test_rmse": 0.018383923918008804
+  },
+  {
+    "ticker": "BANKBARODA.NS",
+    "status": "ok",
+    "best_val": 0.0003514425625326112,
+    "best_epoch": 49,
+    "test_rmse": 0.016882751137018204
+  },
+  {
+    "ticker": "BEL.NS",
+    "status": "ok",
+    "best_val": 0.0005664916388923302,
+    "best_epoch": 31,
+    "test_rmse": 0.020330242812633514
+  },
+  {
+    "ticker": "BHARATFORG.NS",
+    "status": "ok",
+    "best_val": 0.00040817556146066636,
+    "best_epoch": 44,
+    "test_rmse": 0.01986696384847164
+  },
+  {
+    "ticker": "BHARTIARTL.NS",
+    "status": "ok",
+    "best_val": 0.0002132122463081032,
+    "best_epoch": 77,
+    "test_rmse": 0.014113699086010456
+  },
+  {
+    "ticker": "BHEL.NS",
+    "status": "ok",
+    "best_val": 0.0005237993609625846,
+    "best_epoch": 37,
+    "test_rmse": 0.018336927518248558
+  },
+  {
+    "ticker": "BOSCHLTD.NS",
+    "status": "ok",
+    "best_val": 0.0003883647732436657,
+    "best_epoch": 62,
+    "test_rmse": 0.017193030565977097
+  },
+  {
+    "ticker": "BPCL.NS",
+    "status": "ok",
+    "best_val": 0.00044306971540208906,
+    "best_epoch": 59,
+    "test_rmse": 0.01936628483235836
+  },
+  {
+    "ticker": "BRITANNIA.NS",
+    "status": "ok",
+    "best_val": 0.00021223424118943512,
+    "best_epoch": 51,
+    "test_rmse": 0.013409217819571495
+  },
+  {
+    "ticker": "BSE.NS",
+    "status": "ok",
+    "best_val": 0.000720445008482784,
+    "best_epoch": 43,
+    "test_rmse": 0.02188783697783947
+  },
+  {
+    "ticker": "CANBK.NS",
+    "status": "ok",
+    "best_val": 0.0003752804041141644,
+    "best_epoch": 44,
+    "test_rmse": 0.017060499638319016
+  },
+  {
+    "ticker": "CEATLTD.NS",
+    "status": "ok",
+    "best_val": 0.00047985279525164515,
+    "best_epoch": 71,
+    "test_rmse": 0.018936296924948692
+  },
+  {
+    "ticker": "CESC.NS",
+    "status": "ok",
+    "best_val": 0.0004946460685459897,
+    "best_epoch": 48,
+    "test_rmse": 0.017496507614850998
+  },
+  {
+    "ticker": "CHOLAFIN.NS",
+    "status": "ok",
+    "best_val": 0.0004139232187299058,
+    "best_epoch": 40,
+    "test_rmse": 0.019845025613904
+  },
+  {
+    "ticker": "CIPLA.NS",
+    "status": "ok",
+    "best_val": 0.0002409084772807546,
+    "best_epoch": 71,
+    "test_rmse": 0.015550721436738968
+  },
+  {
+    "ticker": "COALINDIA.NS",
+    "status": "ok",
+    "best_val": 0.0003965789655921981,
+    "best_epoch": 75,
+    "test_rmse": 0.016833830624818802
+  },
+  {
+    "ticker": "COLPAL.NS",
+    "status": "ok",
+    "best_val": 0.0002752257860265672,
+    "best_epoch": 72,
+    "test_rmse": 0.016647519543766975
+  },
+  {
+    "ticker": "CROMPTON.NS",
+    "status": "ok",
+    "best_val": 0.00041209331538993865,
+    "best_epoch": 55,
+    "test_rmse": 0.017126265913248062
+  },
+  {
+    "ticker": "DABUR.NS",
+    "status": "ok",
+    "best_val": 0.0002382204111199826,
+    "best_epoch": 67,
+    "test_rmse": 0.013511796481907368
+  },
+  {
+    "ticker": "DEEPAKNTR.NS",
+    "status": "ok",
+    "best_val": 0.0004232587671140209,
+    "best_epoch": 76,
+    "test_rmse": 0.017765503376722336
+  },
+  {
+    "ticker": "DIVISLAB.NS",
+    "status": "ok",
+    "best_val": 0.0002610908049973659,
+    "best_epoch": 63,
+    "test_rmse": 0.01600433513522148
+  },
+  {
+    "ticker": "DLF.NS",
+    "status": "ok",
+    "best_val": 0.0004514970787568018,
+    "best_epoch": 19,
+    "test_rmse": 0.01884428784251213
+  },
+  {
+    "ticker": "DRREDDY.NS",
+    "status": "ok",
+    "best_val": 0.0002389135115663521,
+    "best_epoch": 78,
+    "test_rmse": 0.015852471813559532
+  },
+  {
+    "ticker": "EICHERMOT.NS",
+    "status": "ok",
+    "best_val": 0.0003407839249121025,
+    "best_epoch": 79,
+    "test_rmse": 0.016500551253557205
+  },
+  {
+    "ticker": "ETERNAL.NS",
+    "status": "ok",
+    "best_val": 0.0004709706990979612,
+    "best_epoch": 65,
+    "test_rmse": 0.018745753914117813
+  },
+  {
+    "ticker": "EXIDEIND.NS",
+    "status": "ok",
+    "best_val": 0.0006608761323150247,
+    "best_epoch": 58,
+    "test_rmse": 0.022041194140911102
+  },
+  {
+    "ticker": "FEDERALBNK.NS",
+    "status": "ok",
+    "best_val": 0.0003838697593891993,
+    "best_epoch": 80,
+    "test_rmse": 0.017428549006581306
+  },
+  {
+    "ticker": "GAIL.NS",
+    "status": "ok",
+    "best_val": 0.0004148893349338323,
+    "best_epoch": 23,
+    "test_rmse": 0.017237095162272453
+  },
+  {
+    "ticker": "GODREJCP.NS",
+    "status": "ok",
+    "best_val": 0.00024990712699946016,
+    "best_epoch": 52,
+    "test_rmse": 0.014450503513216972
+  },
+  {
+    "ticker": "GRASIM.NS",
+    "status": "ok",
+    "best_val": 0.0002766548132058233,
+    "best_epoch": 46,
+    "test_rmse": 0.015313529409468174
+  },
+  {
+    "ticker": "GSPL.NS",
+    "status": "ok",
+    "best_val": 0.0006118644232628867,
+    "best_epoch": 33,
+    "test_rmse": 0.021953890100121498
+  },
+  {
+    "ticker": "HAL.NS",
+    "status": "ok",
+    "best_val": 0.0005994111706968397,
+    "best_epoch": 56,
+    "test_rmse": 0.019520070403814316
+  },
+  {
+    "ticker": "HAVELLS.NS",
+    "status": "ok",
+    "best_val": 0.0005144142342032865,
+    "best_epoch": 41,
+    "test_rmse": 0.017566977068781853
+  },
+  {
+    "ticker": "HCLTECH.NS",
+    "status": "ok",
+    "best_val": 0.0002585263573564589,
+    "best_epoch": 79,
+    "test_rmse": 0.01522719394415617
+  },
+  {
+    "ticker": "HDFCAMC.NS",
+    "status": "ok",
+    "best_val": 0.0005488168390002102,
+    "best_epoch": 33,
+    "test_rmse": 0.02111699804663658
+  },
+  {
+    "ticker": "HDFCBANK.NS",
+    "status": "ok",
+    "best_val": 0.0002057235615211539,
+    "best_epoch": 79,
+    "test_rmse": 0.012962275184690952
+  },
+  {
+    "ticker": "HDFCLIFE.NS",
+    "status": "ok",
+    "best_val": 0.0002528197510400787,
+    "best_epoch": 71,
+    "test_rmse": 0.015326190739870071
+  },
+  {
+    "ticker": "HEROMOTOCO.NS",
+    "status": "ok",
+    "best_val": 0.00028838717844337225,
+    "best_epoch": 67,
+    "test_rmse": 0.015901664271950722
+  },
+  {
+    "ticker": "HINDALCO.NS",
+    "status": "ok",
+    "best_val": 0.00035089257289655507,
+    "best_epoch": 49,
+    "test_rmse": 0.01777556538581848
+  },
+  {
+    "ticker": "HINDUNILVR.NS",
+    "status": "ok",
+    "best_val": 0.00021631890558637679,
+    "best_epoch": 46,
+    "test_rmse": 0.013463027775287628
+  },
+  {
+    "ticker": "ICICIBANK.NS",
+    "status": "ok",
+    "best_val": 0.0002245210562250577,
+    "best_epoch": 78,
+    "test_rmse": 0.013549469411373138
+  },
+  {
+    "ticker": "ICICIGI.NS",
+    "status": "ok",
+    "best_val": 0.00026647992490325123,
+    "best_epoch": 80,
+    "test_rmse": 0.015311789698898792
+  },
+  {
+    "ticker": "ICICIPRULI.NS",
+    "status": "ok",
+    "best_val": 0.00028930661210324615,
+    "best_epoch": 78,
+    "test_rmse": 0.01619197614490986
+  },
+  {
+    "ticker": "IDBI.NS",
+    "status": "ok",
+    "best_val": 0.0006055211852071807,
+    "best_epoch": 38,
+    "test_rmse": 0.019060853868722916
+  },
+  {
+    "ticker": "IFCI.NS",
+    "status": "ok",
+    "best_val": 0.0007800345192663372,
+    "best_epoch": 26,
+    "test_rmse": 0.022989509627223015
+  },
+  {
+    "ticker": "INDHOTEL.NS",
+    "status": "ok",
+    "best_val": 0.00048261022311635315,
+    "best_epoch": 62,
+    "test_rmse": 0.019468100741505623
+  },
+  {
+    "ticker": "INDIACEM.NS",
+    "status": "ok",
+    "best_val": 0.0004128512955503538,
+    "best_epoch": 79,
+    "test_rmse": 0.016809364780783653
+  },
+  {
+    "ticker": "INDIGO.NS",
+    "status": "ok",
+    "best_val": 0.0003465957852313295,
+    "best_epoch": 51,
+    "test_rmse": 0.016469154506921768
+  },
+  {
+    "ticker": "INDUSINDBK.NS",
+    "status": "ok",
+    "best_val": 0.00042390404269099236,
+    "best_epoch": 56,
+    "test_rmse": 0.02067043073475361
+  },
+  {
+    "ticker": "INFY.NS",
+    "status": "ok",
+    "best_val": 0.0002573600213509053,
+    "best_epoch": 63,
+    "test_rmse": 0.015170903876423836
+  },
+  {
+    "ticker": "IOB.NS",
+    "status": "ok",
+    "best_val": 0.000541576897376217,
+    "best_epoch": 41,
+    "test_rmse": 0.018605312332510948
+  },
+  {
+    "ticker": "IOC.NS",
+    "status": "ok",
+    "best_val": 0.0005019309610361233,
+    "best_epoch": 39,
+    "test_rmse": 0.018434958532452583
+  },
+  {
+    "ticker": "IRCON.NS",
+    "status": "ok",
+    "best_val": 0.00082565558841452,
+    "best_epoch": 40,
+    "test_rmse": 0.023575065657496452
+  },
+  {
+    "ticker": "IRFC.NS",
+    "status": "ok",
+    "best_val": 0.0008369776769541204,
+    "best_epoch": 50,
+    "test_rmse": 0.02214248664677143
+  },
+  {
+    "ticker": "ITC.NS",
+    "status": "ok",
+    "best_val": 0.0002169711297028698,
+    "best_epoch": 44,
+    "test_rmse": 0.013128925114870071
+  },
+  {
+    "ticker": "ITDC.NS",
+    "status": "ok",
+    "best_val": 0.0005819622165290639,
+    "best_epoch": 21,
+    "test_rmse": 0.020810166373848915
+  },
+  {
+    "ticker": "JINDALSTEL.NS",
+    "status": "ok",
+    "best_val": 0.00037398927088361233,
+    "best_epoch": 41,
+    "test_rmse": 0.017427483573555946
+  },
+  {
+    "ticker": "JKCEMENT.NS",
+    "status": "ok",
+    "best_val": 0.0002730462292674929,
+    "best_epoch": 80,
+    "test_rmse": 0.01460610143840313
+  },
+  {
+    "ticker": "JMFINANCIL.NS",
+    "status": "ok",
+    "best_val": 0.0005369498394429684,
+    "best_epoch": 70,
+    "test_rmse": 0.02135924994945526
+  },
+  {
+    "ticker": "JSWSTEEL.NS",
+    "status": "ok",
+    "best_val": 0.0003655882173916325,
+    "best_epoch": 43,
+    "test_rmse": 0.01803133264183998
+  },
+  {
+    "ticker": "JYOTHYLAB.NS",
+    "status": "ok",
+    "best_val": 0.0004142407706240192,
+    "best_epoch": 53,
+    "test_rmse": 0.017535623162984848
+  },
+  {
+    "ticker": "KAJARIACER.NS",
+    "status": "ok",
+    "best_val": 0.00035711641248781234,
+    "best_epoch": 68,
+    "test_rmse": 0.01817445084452629
+  },
+  {
+    "ticker": "KANSAINER.NS",
+    "status": "ok",
+    "best_val": 0.00031669858435634524,
+    "best_epoch": 62,
+    "test_rmse": 0.016912829130887985
+  },
+  {
+    "ticker": "KARURVYSYA.NS",
+    "status": "ok",
+    "best_val": 0.00049617062904872,
+    "best_epoch": 80,
+    "test_rmse": 0.01974242553114891
+  },
+  {
+    "ticker": "KEC.NS",
+    "status": "ok",
+    "best_val": 0.0005536135577131063,
+    "best_epoch": 46,
+    "test_rmse": 0.01843436248600483
+  },
+  {
+    "ticker": "KOTAKBANK.NS",
+    "status": "ok",
+    "best_val": 0.00023913756740512326,
+    "best_epoch": 72,
+    "test_rmse": 0.013738325797021389
+  },
+  {
+    "ticker": "LICI.NS",
+    "status": "ok",
+    "best_val": 0.0004784064076375216,
+    "best_epoch": 53,
+    "test_rmse": 0.019054867327213287
+  },
+  {
+    "ticker": "LTIM.NS",
+    "status": "ok",
+    "best_val": 0.0002612866519484669,
+    "best_epoch": 71,
+    "test_rmse": 0.015373939648270607
+  },
+  {
+    "ticker": "LT.NS",
+    "status": "ok",
+    "best_val": 0.00041662210423965007,
+    "best_epoch": 75,
+    "test_rmse": 0.01625244878232479
+  },
+  {
+    "ticker": "LUPIN.NS",
+    "status": "ok",
+    "best_val": 0.0002693770657060668,
+    "best_epoch": 79,
+    "test_rmse": 0.017121704295277596
+  },
+  {
+    "ticker": "M&M.NS",
+    "status": "ok",
+    "best_val": 0.0003386162861716002,
+    "best_epoch": 61,
+    "test_rmse": 0.01601901464164257
+  },
+  {
+    "ticker": "MARICO.NS",
+    "status": "ok",
+    "best_val": 0.000303462817100808,
+    "best_epoch": 22,
+    "test_rmse": 0.016118796542286873
+  },
+  {
+    "ticker": "MARUTI.NS",
+    "status": "ok",
+    "best_val": 0.0003138797474093735,
+    "best_epoch": 75,
+    "test_rmse": 0.015557273291051388
+  },
+  {
+    "ticker": "MFSL.NS",
+    "status": "ok",
+    "best_val": 0.0002956491953227669,
+    "best_epoch": 53,
+    "test_rmse": 0.016039926558732986
+  },
+  {
+    "ticker": "MOTHERSON.NS",
+    "status": "ok",
+    "best_val": 0.00040385080501437187,
+    "best_epoch": 77,
+    "test_rmse": 0.01787441037595272
+  },
+  {
+    "ticker": "MRF.NS",
+    "status": "ok",
+    "best_val": 0.0003822089493041858,
+    "best_epoch": 54,
+    "test_rmse": 0.018377678468823433
+  },
+  {
+    "ticker": "MUTHOOTFIN.NS",
+    "status": "ok",
+    "best_val": 0.00048368863645009696,
+    "best_epoch": 26,
+    "test_rmse": 0.018842853605747223
+  },
+  {
+    "ticker": "NESTLEIND.NS",
+    "status": "ok",
+    "best_val": 0.00024405938165728003,
+    "best_epoch": 76,
+    "test_rmse": 0.014659660868346691
+  },
+  {
+    "ticker": "NHPC.NS",
+    "status": "ok",
+    "best_val": 0.0004967635322827846,
+    "best_epoch": 52,
+    "test_rmse": 0.018418483436107635
+  },
+  {
+    "ticker": "NLCINDIA.NS",
+    "status": "ok",
+    "best_val": 0.0005146449839230627,
+    "best_epoch": 57,
+    "test_rmse": 0.020286910235881805
+  },
+  {
+    "ticker": "NMDC.NS",
+    "status": "ok",
+    "best_val": 0.0003701812383951619,
+    "best_epoch": 57,
+    "test_rmse": 0.017853274941444397
+  },
+  {
+    "ticker": "NTPC.NS",
+    "status": "ok",
+    "best_val": 0.00037658330984413624,
+    "best_epoch": 68,
+    "test_rmse": 0.014942120760679245
+  },
+  {
+    "ticker": "OIL.NS",
+    "status": "ok",
+    "best_val": 0.00043964218639303,
+    "best_epoch": 30,
+    "test_rmse": 0.016112618148326874
+  },
+  {
+    "ticker": "ONGC.NS",
+    "status": "ok",
+    "best_val": 0.0004901737120235339,
+    "best_epoch": 39,
+    "test_rmse": 0.01752736046910286
+  },
+  {
+    "ticker": "PATANJALI.NS",
+    "status": "ok",
+    "best_val": 0.00044597205123864114,
+    "best_epoch": 36,
+    "test_rmse": 0.017003942281007767
+  },
+  {
+    "ticker": "PFC.NS",
+    "status": "ok",
+    "best_val": 0.0004616584919858724,
+    "best_epoch": 56,
+    "test_rmse": 0.01718410849571228
+  },
+  {
+    "ticker": "PFIZER.NS",
+    "status": "ok",
+    "best_val": 0.00033411481126677245,
+    "best_epoch": 61,
+    "test_rmse": 0.017881963402032852
+  },
+  {
+    "ticker": "PIDILITIND.NS",
+    "status": "ok",
+    "best_val": 0.0002441761243971996,
+    "best_epoch": 57,
+    "test_rmse": 0.013186490163207054
+  },
+  {
+    "ticker": "PNB.NS",
+    "status": "ok",
+    "best_val": 0.0005492585623869672,
+    "best_epoch": 42,
+    "test_rmse": 0.020995790138840675
+  },
+  {
+    "ticker": "POLYCAB.NS",
+    "status": "ok",
+    "best_val": 0.0005471588956424966,
+    "best_epoch": 28,
+    "test_rmse": 0.019809052348136902
+  },
+  {
+    "ticker": "POWERGRID.NS",
+    "status": "ok",
+    "best_val": 0.00041394495929125696,
+    "best_epoch": 73,
+    "test_rmse": 0.017695223912596703
+  },
+  {
+    "ticker": "RADICO.NS",
+    "status": "ok",
+    "best_val": 0.0005173721583560109,
+    "best_epoch": 80,
+    "test_rmse": 0.020212937146425247
+  },
+  {
+    "ticker": "RAJESHEXPO.NS",
+    "status": "ok",
+    "best_val": 0.0006328363670036197,
+    "best_epoch": 30,
+    "test_rmse": 0.025265244767069817
+  },
+  {
+    "ticker": "RBLBANK.NS",
+    "status": "ok",
+    "best_val": 0.0004120659868931398,
+    "best_epoch": 80,
+    "test_rmse": 0.018203744664788246
+  },
+  {
+    "ticker": "RELIANCE.NS",
+    "status": "ok",
+    "best_val": 0.0003077675064560026,
+    "best_epoch": 67,
+    "test_rmse": 0.01527878176420927
+  },
+  {
+    "ticker": "RVNL.NS",
+    "status": "ok",
+    "best_val": 0.0008794614695943892,
+    "best_epoch": 36,
+    "test_rmse": 0.025156240910291672
+  },
+  {
+    "ticker": "SAIL.NS",
+    "status": "ok",
+    "best_val": 0.0003932169929612428,
+    "best_epoch": 79,
+    "test_rmse": 0.01818712428212166
+  },
+  {
+    "ticker": "SBICARD.NS",
+    "status": "ok",
+    "best_val": 0.0003972784033976495,
+    "best_epoch": 79,
+    "test_rmse": 0.018743881955742836
+  },
+  {
+    "ticker": "SBILIFE.NS",
+    "status": "ok",
+    "best_val": 0.00022947651450522244,
+    "best_epoch": 65,
+    "test_rmse": 0.014509758912026882
+  },
+  {
+    "ticker": "SBIN.NS",
+    "status": "ok",
+    "best_val": 0.00043354133958928287,
+    "best_epoch": 61,
+    "test_rmse": 0.01660750061273575
+  },
+  {
+    "ticker": "SHREECEM.NS",
+    "status": "ok",
+    "best_val": 0.0002800922666210681,
+    "best_epoch": 65,
+    "test_rmse": 0.013406647369265556
+  },
+  {
+    "ticker": "SIEMENS.NS",
+    "status": "ok",
+    "best_val": 0.0005971703503746539,
+    "best_epoch": 28,
+    "test_rmse": 0.0205999743193388
+  },
+  {
+    "ticker": "SJVN.NS",
+    "status": "ok",
+    "best_val": 0.0007240029226522893,
+    "best_epoch": 35,
+    "test_rmse": 0.020571231842041016
+  },
+  {
+    "ticker": "SPARC.NS",
+    "status": "ok",
+    "best_val": 0.0005231928516877815,
+    "best_epoch": 70,
+    "test_rmse": 0.02174926921725273
+  },
+  {
+    "ticker": "SPICEJET.NS",
+    "status": "ok",
+    "best_val": 0.0005030342726968229,
+    "best_epoch": 65,
+    "test_rmse": 0.017947664484381676
+  },
+  {
+    "ticker": "SRF.NS",
+    "status": "ok",
+    "best_val": 0.00038482507807202637,
+    "best_epoch": 51,
+    "test_rmse": 0.01739075966179371
+  },
+  {
+    "ticker": "SUNPHARMA.NS",
+    "status": "ok",
+    "best_val": 0.00023469144070986658,
+    "best_epoch": 60,
+    "test_rmse": 0.015366727486252785
+  },
+  {
+    "ticker": "SUNTV.NS",
+    "status": "ok",
+    "best_val": 0.0004821153706870973,
+    "best_epoch": 64,
+    "test_rmse": 0.020122425630688667
+  },
+  {
+    "ticker": "TATACOMM.NS",
+    "status": "ok",
+    "best_val": 0.00047821553016547114,
+    "best_epoch": 59,
+    "test_rmse": 0.019642332568764687
+  },
+  {
+    "ticker": "TATACONSUM.NS",
+    "status": "ok",
+    "best_val": 0.00023874323960626498,
+    "best_epoch": 66,
+    "test_rmse": 0.014873040840029716
+  },
+  {
+    "ticker": "TATAMOTORS.NS",
+    "status": "ok",
+    "best_val": 0.00040595133032184094,
+    "best_epoch": 66,
+    "test_rmse": 0.024019017815589905
+  },
+  {
+    "ticker": "TATAPOWER.NS",
+    "status": "ok",
+    "best_val": 0.0004598792002070695,
+    "best_epoch": 77,
+    "test_rmse": 0.018681759014725685
+  },
+  {
+    "ticker": "TATASTEEL.NS",
+    "status": "ok",
+    "best_val": 0.0004053198645124212,
+    "best_epoch": 65,
+    "test_rmse": 0.0186313446611166
+  },
+  {
+    "ticker": "TCS.NS",
+    "status": "ok",
+    "best_val": 0.00026406856341054663,
+    "best_epoch": 76,
+    "test_rmse": 0.015103591606020927
+  },
+  {
+    "ticker": "TECHM.NS",
+    "status": "ok",
+    "best_val": 0.00026086314755957574,
+    "best_epoch": 79,
+    "test_rmse": 0.015306370332837105
+  },
+  {
+    "ticker": "THOMASCOOK.NS",
+    "status": "ok",
+    "best_val": 0.0005194457480683923,
+    "best_epoch": 45,
+    "test_rmse": 0.02114255353808403
+  },
+  {
+    "ticker": "TITAN.NS",
+    "status": "ok",
+    "best_val": 0.000244683469645679,
+    "best_epoch": 57,
+    "test_rmse": 0.01356069091707468
+  },
+  {
+    "ticker": "TRENT.NS",
+    "status": "ok",
+    "best_val": 0.0004083196836290881,
+    "best_epoch": 51,
+    "test_rmse": 0.019123351201415062
+  },
+  {
+    "ticker": "TVSMOTOR.NS",
+    "status": "ok",
+    "best_val": 0.00033245979284401983,
+    "best_epoch": 52,
+    "test_rmse": 0.016674673184752464
+  },
+  {
+    "ticker": "UBL.NS",
+    "status": "ok",
+    "best_val": 0.0003059333103010431,
+    "best_epoch": 42,
+    "test_rmse": 0.015602245926856995
+  },
+  {
+    "ticker": "ULTRACEMCO.NS",
+    "status": "ok",
+    "best_val": 0.00030001795676071197,
+    "best_epoch": 80,
+    "test_rmse": 0.016735348850488663
+  },
+  {
+    "ticker": "UNIONBANK.NS",
+    "status": "ok",
+    "best_val": 0.00045254048018250614,
+    "best_epoch": 74,
+    "test_rmse": 0.017927303910255432
+  },
+  {
+    "ticker": "UPL.NS",
+    "status": "ok",
+    "best_val": 0.000413106128689833,
+    "best_epoch": 60,
+    "test_rmse": 0.017853397876024246
+  },
+  {
+    "ticker": "VEDL.NS",
+    "status": "ok",
+    "best_val": 0.0006263468385441229,
+    "best_epoch": 77,
+    "test_rmse": 0.024932263419032097
+  },
+  {
+    "ticker": "VGUARD.NS",
+    "status": "ok",
+    "best_val": 0.0005492783820955083,
+    "best_epoch": 23,
+    "test_rmse": 0.01988295465707779
+  },
+  {
+    "ticker": "VOLTAS.NS",
+    "status": "ok",
+    "best_val": 0.0004042540822410956,
+    "best_epoch": 55,
+    "test_rmse": 0.01703355647623539
+  },
+  {
+    "ticker": "WIPRO.NS",
+    "status": "ok",
+    "best_val": 0.00026127648015972227,
+    "best_epoch": 52,
+    "test_rmse": 0.015388435684144497
+  },
+  {
+    "ticker": "YESBANK.NS",
+    "status": "ok",
+    "best_val": 0.000607926122029312,
+    "best_epoch": 41,
+    "test_rmse": 0.023185400292277336
+  },
+  {
+    "ticker": "ZEEL.NS",
+    "status": "ok",
+    "best_val": 0.0004950212314724922,
+    "best_epoch": 69,
+    "test_rmse": 0.019839297980070114
+  },
+  {
+    "ticker": "ZYDUSLIFE.NS",
+    "status": "ok",
+    "best_val": 0.0002261748450109735,
+    "best_epoch": 51,
+    "test_rmse": 0.014803977683186531
+  }
+]
